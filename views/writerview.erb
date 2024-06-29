@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Write</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+    <script src="scripts/poll.js"></script>
+    <script>
+        function toggleCustomGenreInput() {
+            var genreDropdown = document.getElementById("genre");
+            var customGenreInput = document.getElementById("custom-genre-input");
+
+            if (genreDropdown.value === "custom") {
+                customGenreInput.style.display = "block";
+            } else {
+                customGenreInput.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+<%= erb :"common/taskbar" %>
+    
+    <!-- Form to enter title, text, image for story into database -->
+    <form method="post" action="/write">
+        <!-- Dropdown for selecting book name -->
+        <select id="book-name" name="book-name" onchange="toggleCustomBookInput()">
+            <option value="" disabled selected>Select Book</option>
+            <% if @books.nil? %>
+                <option value="custom">Other (Enter Your Own)</option>
+            <% else %>
+                <% @books.each do |book| %>
+                    <option value="<%= book.name %>"><%= book.name %></option>
+                <% end %>
+                <option value="custom">Other (Enter Your Own)</option>
+            <% end %>
+            <!-- Add more options as needed -->
+        </select>
+            
+        <!-- Text input for custom book name -->
+        <p id="custom-book-input" style="display: none;">
+            <input type="text" name="custom-book" id="custom-book" placeholder="Enter Your Own Book Name">
+        </p>
+        <p><input id="format" type="text" name="title" id="title" placeholder="Enter title"></p>
+        <textarea id="box" type="text" name="content" id="content" placeholder="Start writing here"></textarea>
+        
+        <div id="write-button-split">
+            <p><input id="format" type="text" name="cost" id="cost" placeholder="Enter cost"></p>
+
+            <!-- Button to toggle poll section -->
+            <button id="create-poll-button" type="button" onclick="togglePollSection()" class="create-poll-button">Create poll</button>
+            <input id="button" type="submit" value="Submit">
+        </div>
+
+        <!-- Section for adding poll -->
+        <div id="poll-section" style="display: none;">
+            <div class="question">
+              <div data-questionIndex="0">
+                <p>Poll Question:</p>
+                <input type="text" name="question-0[]" placeholder="Enter your poll question">
+                <p>Poll Options:</p>
+                <div class="options">
+                  <input type="text" name="option-0[]" placeholder="Option 1" class="option">
+                  <input type="text" name="option-0[]" placeholder="Option 2" class="option">
+                </div>
+                <button type="button" class="addOptionBtn" onclick="addOption(this)">Add Option</button>
+              </div>
+                <!-- You can add more input fields for additional poll options -->
+            </div>
+        </div>
+        
+        <!-- Button to add another question -->
+        <button type="button" id="add-question-button" class="addQuestionBtn" onclick="addQuestion()" style="display: none;">Add Another Question</button>
+        
+        <div class="align">
+            <!-- Dropdown menu for selecting genres -->
+            <select id="genre" name="genre" onchange="toggleCustomGenreInput()">
+                <option value="" disabled selected>Choose Genre</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Sci-Fi">Science Fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Horror">Horror</option>
+                <option value="Crime">Crime</option>
+                <option value="custom">Other (Enter Your Own)</option>
+            </select>
+        </div>
+        
+        <!-- Text input for custom genre -->
+        <p id="custom-genre-input">
+            <input type="text" name="custom-genre" id="custom-genre" placeholder="Enter Your Own Genre">
+        </p>
+        
+        <div class="align">
+            <!-- Dropdown menu for selecting language -->
+            <select name="language">
+                <option value="" disabled selected>Choose Language</option>
+                <option value="English">English</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Korean">Korean</option>
+                <!-- Add more languages as needed -->
+            </select>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+        <head>
+            <title> Profile </title>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <link rel="stylesheet" href="style/main.css">
+        </head>
+
+        <body>
+            <%= erb :"common/taskbar" %>    
+
+            <main class = "space">  <!-- use better class name -->
+
+                <!-- Displaying user profile picture, user id and name -->
+                <div class = "user">                    
+                    <div class = "circle user-item"></div>
+                    <div class = "name user-item">
+                        <h2>Name</h2>
+                        <h4>@username</h4>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <header>
+                    <div id="search-container">
+                        <form id="search" action="">
+                            <input type="text" name="search" placeholder="Search something here..." id="searchbar"/>
+                            <input type="image" src="images/search.svg" name="submit"/>
+                        </form>
+                    </div>
+                </header>
+
+                <div class = "stories-written">
+                    <h3>More by this author</h3>
+
+                    <!-- Iterating through table containing books written by the user and displaying their name and cover -->
+                    <table id = "book">
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Book Cover</th>
+                            </tr>
+                            <% books = Book.where(author: session["user_id"])%>
+                            <% books.each do |book| %>
+                                <tr>
+                                    <!-- Redirects to read page when book selected -->
+                                    <td><a href= <%=h book.get_link%>><%= h book.name %></a></td>
+                                    <td><%= h book.cover %></td>
+                                </tr>
+                            <% end %>
+                        </table>
+                </div>
+
+            </main>
+        </body>
+    </html>

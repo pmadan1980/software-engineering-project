@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <title> Staff Dashboard </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/staff_dashboard.css">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+<%=erb :"common/taskbar" %>
+<br>
+    <div id="boxes" style="display:flex">
+        <div class="stats_box">
+            Total Premium Memberships <br><br>
+                <b id="total-premium"><%= @premium_user_count %></b>
+        </div>
+        <div class="stats_box">
+            Total Income <br><br>
+            <b>INSERT NUMBER HERE</b>
+        </div>
+        <div class="stats_box">
+            Total Users <br><br>
+            <b id="user-count"><%= @user_count %></b>
+        </div>
+    </div>
+    <div class="vertical_space"></div>
+    <div id="middle_row" style="display: flex;">
+        <div class="flagged_stories">
+            Flagged Stories <br><br>
+
+        <div class = "report">
+            <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Story</th>
+                    </tr>
+                <% @flagged_books.each do |book| %>
+                    <tr>
+                        <td><%= book.author %></td>
+                        <td><%= book.name %></td>
+                    </tr>
+                <% end %>
+            </table>
+
+            <div id = "reason">
+                User Reports <br><br>
+
+                <table>
+                    <tr>
+                        <th>User</th>
+                        <th>Reason</th>
+                    </tr>
+                    <% @reports.each do |report| %> 
+                        <tr>
+                            <td><%= report.user %></td>
+                            <td><%= report.reason %></td>
+                        </tr>
+                    <% end %>
+                </table>
+            </div>
+        </div>
+
+        </div>
+        <div class="horizontal_space"></div>
+        <div class="popcorn_price">
+            Popcorn Price <br><br>
+            <b>£<span id="popcorn-value"><%= h @values.popcorn_to_pounds %></span> per Popcorn</b>
+            <br><br><br>
+            <form id="popcorn_price_form" method="post" action="/staff-dashboard">
+                <input id="change_popcorn_price" name="change_popcorn_price" placeholder="CURRENT VALUE">
+                <input id="confirm_popcorn_price" type="submit" onclick="return confirm('Confirm change?')"></button>
+                
+            </form>
+            <% if !@error.nil? %>
+                <p><%= @error %></p>
+            <% end %>
+            
+        </div>
+    </div>
+    <div class=vertical_space></div>
+    <div class="recent_purchases">
+        Recent Purchases <input id="purchase_search" type="text" placeholder="Search..">
+        <br><br>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Cost</th>
+            </tr>
+            <% @purchases.each do |purchase| %>
+            <tr>
+                <%@user = @users.where(Sequel.like(:id, purchase.customer))%>
+                <%@user.each do |temp_user|%>
+                    <td><%= h temp_user.username%></td>
+                    <td>£<%= h purchase.cost%>
+                    <td>Details</td>
+                <%end%>
+
+            </tr>
+            <%end%>
+        </table>
+        <br><br>
+
+        <button id = "purchase_table_left">LEFT</button> <button id = "purchase_table_right">RIGHT</button>
+    </div>
+</body>

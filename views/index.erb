@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse</title>
+    <link rel="stylesheet" href="style/main.css?version=1">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        function copyLink(link, id) {
+            navigator.clipboard.writeText(link);
+            var shareButton = document.getElementById(`share-button-${id}`);
+            shareButton.click();
+        }
+
+        function like(id) {
+            var likeButton = document.getElementById(`like-button-${id}`);
+            likeButton.click();
+        }
+
+        function bookmark(id) {
+            var bookmarkButton = document.getElementById(`bookmark-button-${id}`);
+            bookmarkButton.click();
+        }
+    </script>
+</head>
+<body>
+    <div id="sidebar">
+        <div id="logo-container">
+            <img src="/images/book_icon.svg" alt="Logo">
+        </div>
+        <a href="/home" class="item">
+            <i class="ph-bold ph-house"></i>
+            <span class="text">Home</span>
+        </a>
+        <a href="/likes" class="item">
+            <i class="ph-bold ph-heart"></i>
+            <span class="text">My Likes</span>
+        </a>
+        <a href="/bookmarks" class="item">
+            <i class="ph-bold ph-bookmark-simple"></i>
+            <span class="text">My Saves</span>
+        </a>
+        <a href="/settings" class="item">
+            <i class="ph-bold ph-gear"></i>
+            <span class="text">Settings</span>
+        </a>
+        <a href="#" class="item">
+            <i class="ph-bold ph-users-three"></i>
+            <span class="text">Subscriptions</span>
+        </a>
+    </div>
+
+    <div id="sidebar-right">
+        <div id="sidebar-top-container">
+            <div id="popcorn">
+                <i class="ph-bold ph-popcorn"></i>
+                <h3><%= @user.popcorn %></h3>
+                <a href="/purchase">
+                    <button type="addpopcorn"><i class="ph-bold ph-plus-circle"></i></button>
+                </a>
+            </div>
+                <a href="/logout">
+                    <button id="logout-button">Logout</button>
+                </a>
+        </div>
+        <h2 class="sidebar-header">Explore</h2>
+
+        <a href="/search?search=Sci-Fi" class="item">
+            <i class="ph-bold ph-alien"></i>
+            <span class="text">Sci-Fi</span>
+        </a>
+        <a href="/search?search=Fantasy" class="item">
+            <i class="ph-bold ph-castle-turret"></i>
+            <span class="text">Fantasy</span>
+        </a>
+        <a href="/search?search=Romance" class="item">
+            <i class="ph-bold ph-heart"></i>
+            <span class="text">Romance</span>
+        </a>
+        <a href="/search?search=Horror" class="item">
+            <i class="ph-bold ph-knife"></i>
+            <span class="text">Horror</span>
+        </a>
+        <a href="/search?search=Adventure" class="item">
+            <i class="ph-bold ph-mountains"></i>
+            <span class="text">Adventure</span>
+        </a>
+        <a href="/search?search=Crime" class="item">
+            <i class="ph-bold ph-detective"></i>
+            <span class="text">Crime</span>
+        </a>
+    </div>
+
+    <div id="browse-header">
+        <div id="view-buttons">
+            <button id="recommended">Recommended</button>
+            <button id="subscribed">Subscribed</button>
+                <%if session["staff"]%>
+                    <a href="/staff-dashboard">
+                        <button id="staff-dashboard">Staff Dashboard</button>
+                    </a>
+                <%end%>
+        </div>
+        <div class="search-container">
+            <form action="/search" method="GET">
+                <input type="text" placeholder="Search" name="search">
+                <button type="submit"><i class="ph-bold ph-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>        
+
+    <div id="content">
+        <% @books.each do |book| %>
+            <% if (book.flagged != 1) %>
+                <div class="story">
+                    <div class="story-sidebar">
+                        <div class="profile-container">
+                            <img src="/images/user-circle.svg">
+                            <% if (!book.get_author.nil?) %>
+                                <p class="username">@<%= book.get_author.username %></p>
+                            <% else %>
+                                <p class="username">@unknownuser</p>
+                            <% end %>
+                            
+                        </div>
+                        <div class="story-cover">
+                            <!-- Book cover -->
+                            <div class="cover">
+                                <div class="line">
+                                    <div class="label">
+                                        <p class = "book-title"><%= h book.name %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-body">
+                        <p class="title"><%= book.name %></p>
+                        <div class="description">
+                            <p class="description-head">Description</p>
+                            <p class="description-body">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </p>
+                            <div class="read-more">
+                                <a href= <%=book.get_link%> class="item">
+                                <% if @user.owns_book(book) %>
+                                    <i class="ph-bold ph-arrows-out"></i>
+                                    <span class="text">Read More</span>
+                                <% else %>
+                                    <i class="ph-bold ph-lock"></i>
+                                    <span class="text">Purchase to read more</span>
+                                <% end %>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="story-details">
+                                <i class="ph-bold ph-book-open-text"></i>
+                                <span><%= book.genre %></span>
+                                <span class="separator">|</span>
+                                <i class="ph-bold ph-clock-counter-clockwise"></i>
+                                <span><%= book.get_last_updated %></span>
+                                <span class="separator">|</span>
+                                <i class="ph-bold ph-popcorn"></i>
+                                <span><%= book.cost %></span>                    
+                            </div>
+                            <form action="/" method="post">
+                                <div class="story-buttons">
+                                    <a href="javascript:like('<%=book.id%>')" class="story-item">
+                                        <i class="ph-bold ph-heart"></i>
+                                        <span class="story-text"><%=book.likes%></span>
+                                    </a>
+                                    <a href="javascript:bookmark('<%=book.id%>')" class="story-item">
+                                        <i class="ph-bold ph-bookmark-simple"></i>
+                                        <span class="story-text"><%=book.bookmarks%></span>
+                                    </a>
+                                    <a href="javascript:copyLink('<%=book.get_full_link(@link)%>', '<%=book.id%>')" class="story-item">
+                                        <i class="ph-bold ph-share-fat"></i>
+                                        <span class="story-text"><%=book.shares%></span>
+                                    </a>
+                                    <a href="#" class="story-item">
+                                        <i class="ph-bold ph-plus-square"></i>
+                                    </a>
+                                </div>
+                                <input type="submit" style="display: none;" id="share-button-<%=book.id%>" name="share"/>
+                                <input type="submit" style="display: none;" id="like-button-<%=book.id%>" name="like"/>
+                                <input type="submit" style="display: none;" id="bookmark-button-<%=book.id%>" name="bookmark"/>
+                                <input type="hidden" value="<%=book.id%>" name="book_id"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <title> Home </title>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <link rel="stylesheet" href="style/main.css">
+        </head>
+
+
+        <body>
+            <%= erb :"common/taskbar" %>
+
+            <!-- Displaying user profile picture, user id and name -->
+            <main class = "space">
+                <div class = "user">                    
+                    <div class = "circle user-item"></div>
+                    <div class = "name user-item">
+                        <div class = "last-minute">
+                            <h2><%= @user.name %></h2>
+                            <h4>@<%= @user.username %></h4>
+                            <h4><%= @user.about_me %></h4>
+                        </div>
+
+                        <div class = "random">
+                            <h2><%= @user.popcorn %></h2>
+                            <h4>popcorn balance</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <header>
+                    <div id="search-container">
+                        <form id="search" action="">
+                            <input type="text" name="search" placeholder="Search something here..." id="searchbar"/>
+                            <input type="image" src="images/search.svg" name="submit"/>
+                        </form>
+                    </div>
+                </header>
+
+                <!-- Iterating through table containing books purchased by the user and displaying their name and cover -->
+                <div class="reader-content" id="reader-content">
+                    <div class = "read">
+                        <h3>Books You've Read</h3>
+                        <table id = "book">
+                            <% @books.each do |book| %>
+                                <% if (book.flagged != 1) %>
+                                    <tr>
+                                        <!-- Redirects to read page when book selected -->
+                                        <td>
+                                        <!-- Book cover -->
+                                            <div class="rectangle">
+                                                <div class="vl">
+                                                    <div class="rect">
+                                                        <p class = "book-name"><%= h book.name %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "book-link"><a href= <%=h book.get_link%>><%= h book.name %></a></div>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </table>
+
+                    </div>
+
+                    <!-- Iterating through table containing purchases made by the user and displaying their details -->
+                    <div class = "spending">
+                        <h3>Popcorn Spending</h3>
+                        <table id = "book">
+                        <tr>
+                            <th>No</th>
+                            <th>Purchase</th>
+                            <th>Cost</th>
+                            <th>Date</th>
+                        </tr>
+                        <% @purchases.each do |purchase| %>
+                            <tr>
+                                <td><%= h purchase.id %></td>
+                                <td><%= h purchase.product %></td>
+                                <td><%= h purchase.cost %></td>
+                                <td><%= h purchase.date %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                    </div>
+
+                    <!-- Displaying writers of the books displayed by searching through the database -->
+                    <div>
+                        <h3>Writers You Like</h3>
+                        <table class = "writers">
+                            <% @authors.each do |author| %>
+                                <td>
+                                    <a href=<%=author&.get_link%>><%= author.name %></a>
+                                </td>
+                            <% end %>
+                        </table>
+                    </div>
+
+                </div>
+            </main>
+
+        </body>
+    </html>

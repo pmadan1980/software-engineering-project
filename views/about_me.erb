@@ -1,0 +1,36 @@
+<!-- pops up after signing up -->
+<!DOCTYPE html>
+<head>
+    <title> About me </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <%= erb :"common/taskbar" %>
+    <div class="log-in-background">
+        <main class="main-centre">
+            <div>
+                <h1>Continue</h1>
+                <h2>Tell us more about you</h2>
+            </div>
+            <form method="post" action="/about-me" id="about-me-form">
+                <div>
+                    <label for="name">Name</label><br>
+                    <div class="text-input">
+                        <input id="name" name="name" maxlength="12" autocomplete="username"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="about_me">About me</label><br>
+                    <div class="text-input">
+                        <textarea id="about_me" name="about_me" autocomplete="password" type="password" maxlength="64"></textarea>
+                    </div>
+                </div>
+                <input id="submit" type="submit" value="Continue"/>
+            </form>
+            <p><%= @error %></p>
+            <a href="/"> Skip </a>
+        </main>
+    </div>
+</body>

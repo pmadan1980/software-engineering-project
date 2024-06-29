@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <title> Purchase </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>    
+</head>
+<body>
+    <%= erb :"common/taskbar" %>
+    <div class="log-in-background">
+        <main class="main-centre">
+            <form type="get" action="/confirm" id="basket-purchase">
+                <div id="subscription-purchase-grid">
+                    <div id="purchase-grid">
+                        <div class="purchase-box" onclick="popcorn100.click()">
+                            <div>
+                                100 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(100) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn100" name="popcorn100"/>
+                        </div>
+                        <div class="purchase-box" onclick="popcorn500.click()">
+                            <div>
+                                500 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(500) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn500" name="popcorn500"/>
+                        </div>
+                        <div class="purchase-box" onclick="popcorn1500.click()">
+                            <div>
+                                1500 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(1500) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn1500" name="popcorn1500"/>
+                        </div>
+                        <div class="purchase-box" onclick="popcorn5000.click()">
+                            <div>
+                                5000 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(5000) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn5000" name="popcorn5000"/>
+                        </div>
+                        <div class="purchase-box" onclick="popcorn10000.click()">
+                            <div>
+                                10000 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(10000) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn10000" name="popcorn1000"/>
+                        </div>
+                        <div class="purchase-box" onclick="popcorn25000.click()">
+                            <div>
+                                25000 <i class="ph-bold ph-popcorn"></i>
+                            </div>
+                            <div class="cost-box"> 
+                                <%= @defaultValues.calculate_cost(25000) %> COM_pounds
+                            </div>
+                            <input type="checkbox" id="popcorn25000" name="popcorn25000"/>
+                        </div>
+                    </div>
+                    <div class="purchase-box" onclick="premium.click()">
+                        <p>
+                            Purchase Premium
+                        </p>
+                        <p>
+                            <%= @defaultValues.premium_price %> COM_pounds
+                        </p>
+                        <input type="checkbox" id="premium" name="premium"/>
+                    </div>
+                </div>
+                <input type="submit" value="Purchase">
+            </form>
+        </main>
+    </div>
+</body>

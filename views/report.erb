@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Report </title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/main.css">
+    </head>
+
+    <body>
+        <%= erb :"common/taskbar" %>
+
+        <div class="log-in-background">
+            <main class="main-centre">
+                <div class = "edit">
+                    <h1>What words/phrases/context did you find innapropriate?</h1>
+                </div>
+
+                <form method = "post" action = "/report" style="grid-template-rows: none; grid-gap: 10px;> 
+                    <div class="text-input">
+                        <textarea name="reason" rows="5" cols="50" placeholder="Hi there, how can I help you?" ></textarea>
+                        <input id="submit" type="submit" value="Submit"/>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Home </title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/main.css">
+        <style>
+            .book-name {
+                font-size: 12px; /* Adjust the font size as needed */
+            }
+        </style>
+    </head>
+
+    <body>
+        <%= erb :"common/taskbar" %>    
+
+        <main class="space"> <!-- use better class name -->
+                <!-- Displaying user profile picture, user id and name -->
+                <div class = "user">                    
+                    <div class = "circle user-item"></div>
+                    <div class = "name user-item">
+                        <div class = "last-minute">
+                            <h2><%= @user.name %></h2>
+                            <h4>@<%= @user.username %></h4>
+                            <h4><%= @user.about_me %></h4>
+                        </div>
+
+                        <div class = "random">
+                            <h2>2343</h2>
+                            <h4>subscribers</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <header>
+                    <div id="search-container">
+                        <form id="search" action="">
+                            <input type="text" name="search" placeholder="Search something here..." id="searchbar"/>
+                            <input type="image" src="images/search.svg" name="submit"/>
+                        </form>
+                    </div>
+                </header>
+
+            <div class="stories-written">
+                <h3><%= (@user.is_current_user(session["user_id"])) ? "Your" : "Their"%> Books</h3>
+
+                    <!-- Iterating through table containing books written by the user and displaying their name and cover -->
+                    <table id = "book">
+                            <% books = Book.where(author: @user.id)%>
+                            <% books.each do |book| %>
+                                <% if (book.flagged != 1) %>
+                                    <tr>
+                                        <!-- Redirects to read page when book selected -->
+                                        <td>
+                                        <!-- Book cover -->
+                                            <div class="rectangle">
+                                                <div class="vl">
+                                                    <div class="rect">
+                                                        <p class = "book-name"><%= h book.name %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "book-link"><a href= <%=h book.get_link%>><%= h book.name %></a></div>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                    </table>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Edit </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+    <script src="scripts/poll.js"></script>
+</head>
+
+<body>
+    <%= erb :"common/taskbar" %>
+    
+    <!-- Form to enter title, text, image for story into database -->
+    <form method="post" action="/edit">
+        <p><input id="format" type="text" name="book-name" id="book-name" value="<%= @book.name %>"></p>
+        <p><input id="format" type="text" name="title" id="title" value="<%= @current_chapter&.title %>"></p>
+        <textarea id="box" type="text" name="content" id="content" placeholder="Start writing here"><%= @current_chapter&.content %></textarea>
+       
+        <div class="align">
+            <!-- Dropdown menu for selecting genres -->
+            <select name="genre">
+                <option value=<%= @book.genre %> selected><%= @book.genre %></option>
+                <% genres = ["Fantasy", "Sci-Fi", "Mystery", "Romance", "Adventure", "Horror", "Crime"] %>
+                <% genres.each do |genre| %>
+                    <% if (genre != @book.genre) %>
+                        <option value=<%=genre%>><%=genre%></option>
+                    <% end %>
+                <% end %>
+            </select>
+        </div>
+        
+        <div class="align">
+            <!-- Dropdown menu for selecting language -->
+            <select name="language">
+                <% languages = ["English", "Chinese", "Japanese", "Korean"] %>
+                <option value=<%= @book.language %> selected><%= @book.language %></option>
+                <% languages.each do |language| %>
+                    <% if (language != @book.language) %>
+                        <option value="English"><%= language %></option>
+                    <% end %>
+                <% end %>
+                <!-- Add more languages as needed -->
+            </select>
+        </div>
+        
+        <div id="write-button-split">
+            <p><input id="format" type="text" name="cost" id="cost" placeholder="Enter cost" value=<%= @book.cost %>></p>
+
+            <!-- Button to toggle poll section -->
+            <button id="create-poll-button" type="button" onclick="togglePollSection()" class="create-poll-button">Create poll</button>
+            <input id="button" type="submit" value="Submit">
+        </div>
+
+        <!-- Section for adding poll -->
+        <div id="poll-section" style="display: none;">
+            <% @polls.each do |poll|%> 
+                <div class="question">
+                    <div data-questionIndex="0">
+                        <p>Poll Question:</p>
+                        <input type="text" name="question[]" value="<%= poll.question %>">
+                        <p>Poll Options:</p>
+                        <div class="options">
+                            <% poll.get_options.each do |option|%>
+                                <input type="text" name="option[0][]" value="<%= option %>" class="option">
+                            <% end %>
+                        </div>
+                        <button type="button" class="addOptionBtn" onclick="addOption(this)">Add Option</button>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- Button to add another question -->
+        <button type="button" id="add-question-button" class="addQuestionBtn" onclick="addQuestion()" style="display: none;">Add Another Question</button>
+
+        <input type="hidden" value=<%= @book.id %> name="id">
+        <input type="hidden" value=<%= params["chapter"] %> name="chapter">
+    </form>
+</body>
+</html>
+

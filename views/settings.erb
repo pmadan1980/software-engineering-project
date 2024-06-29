@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <title> Settings </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <%= erb :"common/taskbar" %>
+    <div class="log-in-background">
+        <main class="main-centre">
+            <form action="/settings" method="post" id="settings-form">
+                <label class="settings-option" for="name">
+                    Change your name
+                    <div class="text-input">
+                        <input type="text" name="name" id="name-value" value=<%= @user.name %>>
+                    </div>
+                </label>
+                <label class="settings-option" for="email">
+                    Change your email
+                    <div class="text-input">
+                        <input type="text" name="email" id="email-value" value=<%= @user.email %>>
+                    </div>
+                </label>
+                <div>
+                    <label for="about_me">About me</label><br>
+                    <div class="text-input">
+                        <textarea id="about_me" name="about_me" id="about-me-value" maxlength="128"><%=@user.about_me %></textarea>
+                    </div>
+                </div>
+                <label class="settings-option" for="mode">
+                    Writer mode
+                    <label class="switch">
+                        <input type="hidden" value="false" name="mode"/>
+                        <input name="mode" type="checkbox" <%= @user.is_reader ? "" : "checked" %>/>
+                        <span class="slider"></span>
+                    </label>
+                </label>
+                <input id="submit" type="submit" value="Save">
+            </form>
+            <% if !@error.nil? %>
+                <p><%= @error %></p>
+            <% end %>
+        </main>
+    </div>
+</body>

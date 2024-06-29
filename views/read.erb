@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+    <title> <%= @book.name %> </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style/main.css">
+    <script>
+        function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        }
+
+        function openFlag() {
+        document.getElementById("newForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+</head>
+<body>
+    <%= erb :"common/taskbar" %>
+    <!-- 
+        name,
+        genre,
+        cover,
+        author,
+        chapter: title, content, cost, number, poll
+    -->
+    <div id="header-background">
+        <div>
+            <img id="book-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt8bkdmFio0BXYNMFxNQ__nt1RoX-IS6PS-J3BXlPkEA&s"/>
+            <div id="info-container">
+                <h1> <%= @book.name %> </h1>
+                <% if (!@book.get_author.nil?) %>
+                    <h2> by: <span style="color: #577BB0;"><a href=<%= @book.get_author.get_link %>><%= @book.get_author.username %></a></span> </h1>
+                <% else %>
+                    <h2> by: Unknown </h2>
+                <% end %>
+                <h2> <%= @book.genre %> </h2>
+            </div>
+        </div>
+        <h3> Last updated: <%= @book.get_last_updated %> </h3>
+    </div>
+    <div id="chapter-dropdown">
+        <div></div>
+        <div id="dropdown-button">
+            <h3> View chapters </h3>
+            <img src="images/dropdown.svg"/>
+        </div>
+        <h3> (<%= @book.get_chapter_count %>) </h3>
+    </div>
+    <div id="chapter-container">
+        <% @book.get_chapters.each do |chapter| %>
+            <div>
+                <div> 
+                    <h2> <%= chapter.title %> </h2>
+                    <h3> Chapter <%= chapter.ch_number %> </h3>
+                </div>
+                <div id="chapter-cost-view">
+                    <a href=<%= @book.get_link_with_chapter(chapter.ch_number) %>> View </a>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div id="chapter-content">
+    <% if @user.owns_book(@book) || @user.id == @book.author %>
+            <% if @current_chapter.nil? %>
+                 
+                <h2> Nothing to see here... </h2>
+            <% else %>
+                <p>
+                    <%= @current_chapter.content %>
+                </p>
+            <% end %>
+    <% else %>
+        <form action="purchase-book" method="post" id="purchase-book-form">
+            <label for="purchase"> To continue, you must purchase the book for <%= @book.cost %> popcorn</label>
+            <br>
+            <input name="purchase" value="Purchase" id="purchase-book-button" type="submit"/>
+            <p><%= @error %></p>
+            <input type="hidden" value="<%=@book.id%>" name="book_id"/>
+        </form>
+    <% end %>
+    </div>
+
+    <% if !@current_chapter.nil? %>
+        <form id="poll-section" action="/read" method="post">
+            <% polls = @current_chapter.get_polls %>
+            <% polls.each do |poll|%> 
+                <div class="question">
+                    <div data-questionIndex="0">
+                        <p>Poll Question:</p>
+                        <p><%= poll.question %></p>
+                        <p>Poll Options:</p>
+                        <div class="options">
+                            <% poll.get_options.each do |option|%>
+                                <button type="submit" name="choice" value="<%= option %>" class="option"><%=option%> (<%= poll.get_option_value(option) %>)</button>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            <input type="hidden" value=<%=poll.id%> name="poll_id"/>
+            <% end %>
+        </form>
+    <% end %>
+
+    <% if !@current_chapter.nil? %>
+        <% if (User.first(id: session["user_id"]).is_writer && @book.author ==  session["user_id"]) || User.first(id: session["user_id"]).is_staff %>
+            <div class = "circle3" id = "edit">
+                <div class = "pencil">
+                    <a href= <%=@book.get_link_and_chapter(@current_chapter.ch_number)%>><img src="/images/edit-icon.svg" alt="Edit"></a>
+                </div>
+            </div>
+
+            <div class = "circle3 new">
+                <div class = "pencil dustbin">
+                    <a onclick="openForm()"><img src="/images/delete-icon.svg" alt="Delete"></a> 
+                </div>
+            </div>
+
+            <div class="form-popup" id="myForm">
+                <form method = "post" action="/delete" class="form-container">
+                    <p>Are you sure you want to delete this chapter?</p>
+                    <div class = display>
+                        <button name = "delete" type="submit" class="btn" onclick="closeForm()" value="yes" >Yes</button>
+                        <button name = "delete" class="btn" onclick="closeForm()" value="no">No</button>
+                    </div>
+
+                    <input type = "hidden" value = <%= @book.id %> name = "id">
+                    <input type = "hidden" value = <%= params["chapter"] %> name = "chapter">
+                </form>
+            </div>
+        <% end %>
+
+        <div class = "circle3 new2">
+            <div class = "pencil dustbin">
+                <a onclick="openFlag()"><img src="/images/flag-icon.svg" alt="Flag"></a>
+            </div>
+        </div>
+
+        <div class="form-popup" id="newForm">
+            <form method = "get" action="/flag" class="form-container">
+                <p>Would you like to report innapropriate language?</p>
+                <div class = display>
+                    <button name = "flag" type="submit" class="btn" onclick="closeForm()" value="yes" >Yes</button>
+                    <button name = "flag" class="btn" onclick="closeForm()" value="no">No</button>
+                </div>
+
+                <input type = "hidden" value = <%= @book.id %> name = "id">
+                <input type = "hidden" value = <%= params["chapter"] %> name = "chapter">
+            </form>
+        </div>
+
+    <% end %>
+</body>
