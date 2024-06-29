@@ -1,23 +1,16 @@
-Gems
+# Gems
 Before running the application, you must install all required gems using this command:
+- `bundle install`
 
-bundle install
-
-
-How to Deploy
+# How to Deploy
 To run the application, run the command:
+- `sinatra`
 
-sinatra
-
-
-Running Tests
+# Running Tests
 To run tests, run the command whilst in the main directory (/project):
+- `rspec`
 
-rspec
-
-
-Login details
-
-usernames: reader, writer, staff
-passwords: same as username
-email: <username>@email.com
+# Login details
+- usernames: reader, writer, staff
+- passwords: same as username
+- email: \<username>@email.com
