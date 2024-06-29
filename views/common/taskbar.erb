@@ -1,0 +1,50 @@
+<header>
+    <% user = User.first(id: session["user_id"]) %>
+    <div id="search-container">
+        <div id="logo-container">
+            <img src="images/book_icon.svg"/>
+        </div>
+        <form id="search" action="">
+            <input type="text" name="search" placeholder="Search something here..." id="searchbar"/>
+            <input type="image" src="images/search.svg" name="submit"/>
+        </form>
+        <% if session["logged_in"] %>
+            <nav id="nav-container">
+                <a href="/home"> Home </a>
+                <a href="/"> Browse </a>
+                <a href="/contact"> Contact</a>
+                <% if user.is_staff %>
+                    <a href="/staff-dashboard"> Dashboard </a>
+                <% end %>
+
+                <% if user.is_writer %>
+                    <a href="/write"> Write </a>
+                <% end %>
+            </nav>
+        <% end %>
+    </div>
+    <% if !session["logged_in"] %>
+        <div id="login-container">
+            <a href="/sign-up" id="sign-up">Sign up</a>
+            <a href="/login" id="login">Log in</a>
+        </div>
+    <% else %>
+        <div id="profile-container">
+            <form id="reader-toggle" action="/settings" method="post">
+                <label class="switch">
+                    <input type="hidden" name="mode" value="false"/>
+                    <input name="mode" type="checkbox" onChange="this.form.submit()" <%= user.is_reader ? "" : "checked" %>/>
+                    <span class="slider"></span>
+                </label>
+                <p> Writer mode </p>
+            </form>
+            <div id="profile-picture">
+            </div>
+        </div>
+        <script src="scripts/toggle.js"></script>
+    <% end %>
+</header>
+<ul id="profile-options">
+    <li><a href="/logout">Log out</a></li>
+    <li><a href="/settings">Settings</a></li>
+</ul>
