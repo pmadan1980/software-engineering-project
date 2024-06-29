@@ -1,0 +1,44 @@
+body {
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
+    background-color: #FAFAFA;
+}
+
+.stats_box {
+    width: 640px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 7px;
+}
+
+.vertical_space {
+    height: 25px;
+}
+
+.horizontal_space {
+    width: 25px;
+}
+
+.flagged_stories {
+    width: 1100px;
+    height: 220px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.popcorn_price {
+    width: 400px;
+    height: 220px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.recent_purchases {
+    width: 1510px;
+    height: 280px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}

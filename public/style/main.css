@@ -1,0 +1,1376 @@
+body {
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
+    margin: 0px;
+    background-color: #FAFAFA;
+ }
+ 
+ /* taskbar */
+ header {
+     background-color: #F6F6F6;
+     display: flex;
+     height: 10%;
+     align-items: center;
+     justify-content: space-between;
+     box-shadow: 0px 5px 10px -1px #E2E2E2;
+     position: sticky;
+ }
+ 
+ /* search and icon in header */
+ 
+ header > #search-container {
+     display: flex;
+     align-items: center;
+     width: 42.5%;
+ }
+ 
+ header #search {
+     width: 90%;
+     border-radius: 12.5px;
+     border: #577BB0 solid 0.5px;
+     color: rgba(7, 9, 28, 0.2);
+     background-color: #FAFAFA;
+     padding: 4px;
+     display: flex;
+ }
+ 
+ header #search > #searchbar {
+     width: 95%;
+     background-color: transparent;
+     border: none;
+     padding-left: 8px;
+     font-size: 1em;
+ }
+ 
+ header #search > #searchbar + input {
+     user-select: none;
+ }
+ 
+ header #logo-container > img {
+     border-radius: 100%;
+     background-color: #577BB0;
+     height: 70%;
+     padding: 20%;
+ }
+ 
+ header #logo-container {
+     height: 60px;
+     margin: 2.5px 8% 2.5px 1.8%;
+     padding: 5px;
+     position: relative;
+ }
+ 
+ 
+ /* nav text */
+ #nav-container {
+     display: flex;
+     margin-left: 25px;
+ }
+ 
+ #nav-container > a {
+     text-decoration: none;
+     color: #577BB0;
+     margin-right: 10px;
+ }
+ 
+ /* log in and sign up buttons */
+ header > #login-container {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-gap: 5px;
+     width: 12%;
+ }
+ 
+ header > #login-container > #login {
+     margin-right: 5px;
+     color: #FAFAFA;
+     background: linear-gradient(135deg, #6086c0,#415b83);
+ }
+ header > #login-container > #login:hover {
+     background-color: #44618d;
+ }
+ 
+ header > #login-container a {
+     border-radius: 10px;
+     padding: 6px;
+     font-size: 1em;
+     text-align: center;
+     text-decoration: none;
+     color: #577BB0;
+ }
+ 
+ /* profile section on taskbar */
+ #profile-picture {
+     border-radius: 100%;
+     background-color: #577BB0;
+     width: 60px;
+     height:60px;
+     align-self: normal;
+     margin: 20px;
+     cursor: pointer;
+ }
+ 
+ #profile-options {
+     display: none;
+     float: right;
+     margin: 0;
+     padding: 10px;
+     list-style-type: none;
+     text-align: center;
+     background-color: #F6F6F6;
+     border: #577BB0 solid 0.5px;
+     transition: visibility 2s;
+ }
+ 
+ #profile-options a {
+     text-decoration: none;
+     color: black;
+ }
+
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 75%;
+  width: 45%;
+  bottom: 12%;
+  left: 7%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #577BB0;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #577BB0;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(82%);
+  -ms-transform: translateX(82%);
+  transform: translateX(82%);
+}
+
+header #reader-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: end;
+    margin-bottom: 10px;
+}
+
+#profile-container {
+    display: flex;
+}
+
+header #reader-toggle > p {
+    font-size: 0.75rem;
+    margin-top: 8px;
+}
+
+ /* log in and sign up page */
+ 
+ .main-centre {
+     display: flex;
+     flex-direction: column;
+     background-color: #f6f6f6bb;
+     backdrop-filter: blur(20px);
+     width: 30%;
+     padding: 3%;
+     margin: 5%;
+     height: min-content;
+     border: #577BB0 solid 0.5px;
+     border-radius: 15px;
+ }
+ 
+ .main-centre h1 {
+     font-size: 2em;
+     margin: 0px;
+     color: #577BB0;
+ }
+ 
+ .main-centre h2 {
+     font-size: 0.9em;
+     margin: 2px 0px 0px;
+     color: #6086c0;
+ }
+ 
+ .log-in-background {
+     display: flex;
+     justify-content: center;
+     background: radial-gradient(ellipse at 50% 40%, #577BB0, #FAFAFA 40%);
+ }
+ 
+ .main-centre > form {
+     display: grid;
+     grid-template-rows: 1fr 1fr 1fr;
+     grid-gap: 30px;
+     margin-top: 5%;
+ }
+
+ .main-centre > #about-me-form {
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+ }
+
+ .main-centre > a {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+ 
+ .main-centre > #sign-up-form {
+     grid-template-rows: 1fr 1fr 1fr 1fr;
+ }
+ 
+ .main-centre > form .text-input {
+     display: flex;
+     justify-content: space-between;
+     background-color: #FAFAFA;
+     border: #577BB0 solid 0.5px;
+     border-radius: 12.5px;
+     margin-top: 7.5px;
+ }
+ 
+ .main-centre > form .text-input > input {
+     border: none;
+     border-radius: 12.5px;
+     background-color: transparent;
+     padding: 7.5px;
+     width: 100%;
+ }
+
+ .main-centre > form textarea {
+    width: 100%;
+    background-color: #FAFAFA;
+    resize: none;
+ }
+ 
+ #password-toggle-icon {
+     border: none;
+     background-color: transparent;
+     cursor: pointer;
+     align-self: flex-end;
+ }
+ 
+ .main-centre > form > input {
+     background: linear-gradient(135deg, #6086c0,#45628d);
+     border-radius: 15px;
+     border: none;
+     font-size: 1.2em;
+     color: #FAFAFA;
+     box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+     cursor: pointer;
+     padding: 10px;
+ }
+ 
+ div.user{
+     display: flex;
+     line-height:0.1em;
+     padding:10px;
+ 
+     background-color: #f6f6f6bb;
+     backdrop-filter: blur(20px);    
+   }
+ 
+  /* profile picture container */
+ div.circle {
+     position: relative;
+     height: 70px;
+     width: 70px;
+     background-color: #000;
+     border-radius: 50%;
+     z-index: 2;
+   }
+ 
+ div.circle2 {
+     position: relative;
+     height: 60px;
+     width: 60px;
+     background-color: #000;
+     border-radius: 50%;
+     z-index: 3;
+   }
+ 
+   div.user-item {
+     display:flex;
+     margin:0 10px
+   }
+ 
+ /*margins on both sides (right and left) so content remains centred*/
+   main.space{
+     margin: 10px 15vw 0 15vw;
+   }
+ 
+  /* username and name */
+   div.name h2 {
+     font-size: 2em;
+     color: #577BB0;
+ }
+ 
+ div.name h4 {
+     font-size: 0.9em;
+     color: #6086c0;
+ }
+ 
+ /*container for header and table displaying books */
+ #reader-content {
+     display:grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr;
+     justify-items: center;
+   }
+
+#purchase-book-button {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(135deg, #6086c0, red);
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+    margin: 5%;
+    align-self: center;
+}
+
+#purchase-book-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+e*/
+   #book th{
+     text-align: left;
+     background-color: #577BB0;
+     color: white;
+     font: 16px Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+     padding: 5px;
+     padding-left: 7px;
+     padding-right: 7px;
+   }
+
+   #book td{
+    height:130px;
+    width:100px;
+   }
+ 
+    #book tr {display:inline}
+
+ #sidebar {
+     width: 250px;
+     position: fixed;
+     height: 100%;
+     background-color: #f0f0f0;
+     border-right: 5px solid #c1c1c158;
+ }
+
+ #sidebar > #logo-container {
+     width: 30%;
+     display: flex;
+     justify-content: center;
+     height: auto;
+     margin: 0 auto;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     margin-top: 25px;
+     margin-bottom: 25px;
+     padding: 20px;
+     position: relative;
+     background-color: #577BB0;
+     border-radius: 100%;
+ }
+ 
+ #sidebar-right {
+     width: 290px;
+     position: fixed;
+     height: 100%;
+     right: 0px;
+     background-color: #f0f0f0;
+     border-left: 5px solid #c1c1c158;
+     z-index: 2;
+ }
+ 
+ .sidebar-header {
+     font-size: 27px;
+     margin-left: 20px;
+     margin-bottom: 10px;
+ }
+ 
+ .item {
+     display: flex;
+     text-decoration: none;
+     margin-left: 10px;
+     margin-bottom: 5px;
+     padding-left: 15px;
+     padding-right: 20px;
+     padding-bottom: 5px;
+     padding-top: 5px;
+ }
+ 
+ .item i {
+     display: flex;
+     align-items: center;
+     color: #000000;
+     font-size: 40px;
+ }
+ 
+ .item:hover {
+     background-color: #c1c1c158;
+     border-radius: 100px;
+     width: fit-content;
+ }
+ 
+ .item:hover span,
+ .item:hover i {
+     color: #577BB0;
+ }
+ 
+ .text {
+     display: flex;
+     align-items: center;
+     color: #000000;
+     font-weight: bold;
+     padding-left: 8px;
+     font-size: 20px;
+ }
+ 
+ #browse-header {
+     margin-left: 255px;
+     margin-right: 295px;
+     padding: 5px;
+     position: sticky;
+     display: flex;
+     justify-content: space-between;
+     border-bottom: 5px solid #c1c1c158;
+     z-index: 1;
+ }
+ 
+ #view-buttons {
+     width: 1000px;
+     display: flex;
+     justify-content: space-evenly;
+ }
+ 
+ #view-buttons button {
+     width: 150px;
+     height: 60px;
+     border-radius: 15px;
+     font-size: 18px;
+     font-weight: bold;
+ }
+ 
+ .search-container {
+     display: flex;
+     justify-content: center;
+     width: 450px;
+     padding-top: 10px;
+ }
+ 
+ .search-container button {
+     top: 50%;
+     width: 40px;
+     height: 40px;
+ }
+ 
+ .search-container i {
+     font-size: 24px;
+ }
+ 
+ .search-container input {
+     padding-left: 5px;
+     padding-top: 0px;
+     font-size: 18px;
+     height: 35px;
+     width: 280px;
+ }
+ 
+  #sidebar-top-container {
+     margin-top: 20px;
+     display: flex;
+     justify-content: space-between;
+  }
+ 
+  #logout-button {
+     margin-right: 20px;
+     font-size: 20px;
+  }
+ 
+ #popcorn {
+     display: flex;
+     align-items: center;
+     margin-top: 20px;
+     margin-left: 20px;
+     width: fit-content;
+ }
+ 
+ #popcorn i {
+     font-size: 40px;
+ }
+ 
+ #popcorn h3 {
+     font-size: 24px;
+     margin: 0;
+     margin-left: 2px;
+ }
+ 
+ #popcorn button {
+     margin-left: 5px;
+     padding: 0px;
+ }
+ 
+  #content {
+      margin-left: 250px;
+      margin-right: 290px;
+      padding: 35px;
+  }
+ 
+  .story {
+     display: flex;
+     justify-content: center;
+     margin-bottom: 30px;
+  }
+ 
+ .story-sidebar {
+     width: 190px;
+     margin: 0px;
+     padding: 0px;
+ }
+ 
+ .profile-container {
+     display: flex;
+ }
+ 
+ .username {
+     padding-top: 6px;
+     padding-left: 2px;
+     font-weight: bold;
+     font-size: 18px;
+ }
+ 
+ .profile-container img {
+     padding: 0px;
+     margin-top: 8px;
+     height: 55px;
+ }
+ 
+ .story-cover {
+     margin-top: 5px;
+     display: flex;
+     justify-content: right;
+ }
+ 
+ .story-cover img {
+     border: 5px solid gray;
+     border-radius: 10px;
+ }
+ 
+ .story-body {
+     margin-left: 10px;
+     padding: 10px;
+     width: 825px;
+     background-color: #c1c1c158;
+     border-radius: 15px;
+ }
+ 
+ .title {
+     font-size: 32px;
+     padding: 5px;
+
+
+     margin: 0px;
+     border: 3px solid #434343;
+     border-radius: 8px;
+     text-align: center;
+ }
+ 
+ .description {
+     margin-top: -3px;
+     padding: 5px;
+     border: 3px solid #434343;
+     border-radius: 8px;
+ }
+ 
+ .description-head {
+     margin: 0px;
+     padding: 5px;
+     color: #434343;
+ }
+ 
+ .description-body {
+     margin: 0px;
+     padding: 5px;
+     padding-top: 0px;
+     text-align: left;
+     height: 130px;
+     font-size: 20px;
+ }
+ 
+ .read-more {
+     display: flex;
+     justify-content: center;
+     padding-top: 5px;
+ }
+ 
+ .story-footer {
+     margin-top: -3px;
+     border: 3px solid #434343;
+     border-radius: 8px;
+     display: flex;
+     justify-content: space-between;
+     padding: 0px;
+ }
+ 
+ .story-details {
+     padding: 0px;
+     padding-left: 12px;
+     padding-top: 7px;
+     display: flex;
+ }
+ 
+ .story-details span {
+     margin: 0px;
+     margin-right: 10px;
+     font-size: 20px;
+     font-weight: bold;
+ }
+ 
+ .story-details i {
+     font-size: 24px;
+     margin-right: 4px;
+ }
+ 
+ .separator {
+     font-weight: 900;
+ }
+ 
+ .story-buttons {
+     display: flex;
+ }
+ 
+ .story-item {
+     display: flex;
+     text-decoration: none;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-bottom: 5px;
+     padding-top: 5px;
+ }
+ 
+ .story-item i {
+     display: flex;
+     align-items: center;
+     color: #000000;
+     font-size: 28px;
+ }
+ 
+ .story-item:hover {
+     background-color: #c1c1c158;
+     border-radius: 100px;
+     width: fit-content;
+ }
+ 
+ .story-item:hover span,
+ .story-item:hover i {
+     color: #577BB0;
+ }
+ 
+ .story-text {
+     display: flex;
+     align-items: center;
+     color: #000000;
+     font-weight: bold;
+     padding-left: 8px;
+     font-size: 18px;
+ }
+ 
+ /* read page */
+ #header-background {
+    background-color: #F6F6F6;
+    border-radius: 15px 15px 0px 0px;
+    margin: 5% 8.5% 0px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+ }
+
+ #header-background > div {
+    display: flex;
+    flex-direction: row;
+ }
+
+ #header-background #info-container > *{
+    margin: 0px 10px;
+ }
+
+ #header-background #book-image {
+    width: 30%;
+ }
+
+ #header-background > h3 {
+    align-self: end;
+    margin: 0px;
+ }
+
+ #chapter-dropdown {
+    background-color: #EDEDED;
+    margin: 0px 8.5%;
+    display: flex;
+    justify-content: space-between;
+ }
+
+ #chapter-dropdown > #dropdown-button {
+    display: flex;
+    align-items: center;
+ }
+
+ #chapter-dropdown > #dropdown-button + h3 {
+    margin: auto 10px;
+ }
+
+ #chapter-container {
+    margin: 0px 8.5%;
+ }
+
+ #chapter-container > div {
+    background-color: #EDEDED;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+ }
+
+ #chapter-container > div:nth-child(odd) {
+    background-color: #F6F6F6;
+ }
+
+ #chapter-container h2 {
+    font-size: 1rem;
+ }
+
+ #chapter-container h3 {
+    font-size: 0.8rem;
+    align-self: center;
+ }
+
+ #chapter-container #chapter-cost-view {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+ #chapter-container #chapter-cost-view > a {
+    align-self: center;
+ }
+
+ #chapter-content {
+    margin: 50px 8.5%;
+    background-color: #F6F6F6;
+    padding: 2.5%;
+    display: flex;
+    justify-content: center;
+ }
+
+ #chapter-content > p {
+    justify-self: start;
+    width: 100%;
+ }
+
+/*textbox to enter content*/
+ #box{
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
+  top:50px;
+  position: relative;
+  width: 90%;
+  height: 300px;
+  padding: 10px;
+  margin-left: 50px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+  resize: none;
+}
+
+/*submit button*/
+#button{background: linear-gradient(135deg, #6086c0,#45628d);
+     border-radius: 15px;
+     position: relative;
+     border: none;
+     box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+     cursor: pointer;
+
+     margin-right: 5px;
+     background: linear-gradient(135deg, #6086c0,#415b83);
+     border-radius: 10px;
+     padding: 6px;
+     font-size: 1em;
+     text-align: center;
+     text-decoration: none;
+     color: #FAFAFA;
+     margin: 5%;
+     }
+
+/*textbox to enter title*/
+#title{
+    top:50px;
+
+    left:50px;
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border-width: thin;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+}
+
+#custom-book{
+    top:40px;
+
+    left:50px;
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+
+
+}
+
+/*enter image*/
+label.choose-image{
+    background: linear-gradient(135deg, #6086c0,#45628d);
+     border-radius: 15px;
+     position: relative;
+     top:70px;
+     left:83%;
+     border: none;
+     box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+     cursor: pointer;
+
+     margin-right: 5px;
+     background: linear-gradient(135deg, #6086c0,#415b83);
+     border-radius: 10px;
+     padding: 6px;
+     font-size: 1em;
+     text-align: center;
+     text-decoration: none;
+     color: #FAFAFA;
+}
+
+select[name="genre"] {
+    border-radius: 15px;
+    position: absolute; /* Add position: absolute to position it relative to its containing block */
+    top: 110px; /* Adjust the top value to move the dropdown up */
+    left: 83%;
+    border: none;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    margin-right: 5px;
+    background: linear-gradient(135deg,  #6086c0, red);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+}
+
+
+form.help{
+    display: inline-block;
+    position: relative;
+    left:250px;
+}
+
+div .rectangle {
+  height: 100px;
+  width: 80px;
+  background-color: #577BB0;
+}
+
+div .vl {
+  position: relative;
+  left:10px;
+  border-left: 1px solid black;
+  height: 100px;
+  z-index: 2;
+}
+
+div .rect {
+  position: relative;
+  right:11px;
+  top:30px;
+  height: 40px;
+  width: 80px;
+  background-color: #C8BD9E;
+  z-index: 3;
+}
+
+p.book-name{
+   font-size: 12px; 
+   padding-left: 5px;
+   padding-top: 5px;
+   word-wrap: break-word;
+}
+
+select[name="book-name"] {
+    top: 50px;
+    left: 50px;
+    position: relative;
+    width: calc(90% + 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+#write-button-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 15%;
+    width: 90%;
+    left: 50px;
+    position: relative;
+    padding: 10px;
+    top: 50px;
+}
+
+/* settings page */
+
+div.pencil{
+    height:100%;
+    width:100%;
+
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+div.pencil img{
+        width: 40px;
+        top: 2.5px;
+        position: relative;
+    }
+
+ div.circle3 {
+     position: absolute;
+     height: 60px;
+     width: 60px;
+     background-color: #6086c0;
+     border-radius: 50%;
+
+     right:50px;
+     bottom: 20px ;
+   }
+
+.settings-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* purchase page */
+#subscription-purchase-grid {
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    text-align: center;
+}
+
+#basket-purchase {
+    grid-template-rows: none;
+}
+
+#subscription-purchase-grid #purchase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.purchase-box {
+    background: linear-gradient(135deg, #6086c0,#415b83);;
+    border-radius: 10px;
+    margin: 10px;
+    color: #FAFAFA;
+}
+
+#purchase-grid > .purchase-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.purchase-box > div:first-child {
+    padding: 25px;
+}
+
+.purchase-box > .cost-box {
+    background: linear-gradient(135deg, green, rgb(19, 185, 19));
+    padding: 5px;
+}
+
+#subscription-purchase-grid > .purchase-box {
+    background: linear-gradient(135deg, gold,rgb(184, 156, 2));
+    align-content: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+div .edit{
+    font-size:0.5em;
+}
+
+textarea{
+    border-radius: 10px;
+    background-color: transparent;
+    border:none;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+    padding:7.5px;
+    text-align: left;
+}
+
+#submit{
+    background: linear-gradient(135deg, #6086c0, #45628d);
+    border-radius: 15px;
+    border: none;
+    font-size: 1.2em;
+    color: #FAFAFA;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+
+    position: relative;
+    top:5px;
+    padding:12px;
+}
+
+div.dustbin img{
+    width:35px;
+    top:0px;
+}
+
+div.new{
+    bottom: 90px ;
+}
+
+div.new2{
+    bottom: 160px ;
+}
+
+#format{
+    top:40px;
+    left:50px;
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border-width: thin;
+    border-radius: 10px;
+    cursor: pointer;
+    border:none;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+}
+
+#format[name="cost"] {
+    top: 0px;
+    left: 0px;
+    margin: 5%;
+    width: 85%;
+}
+
+.main-centre > #settings-form {
+    display: flex;
+    flex-direction: column;
+}
+/* Style for the poll section */
+#poll-section {
+  margin-top: 100px; 
+  padding: 20px; 
+  border-radius: 10px; /* Added border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box shadow */
+}
+
+/* Style for each question in the poll section */
+.question {
+  margin-bottom: 20px;
+  margin-left: 10px; /* Added margin-left */
+  border: 1px solid #ccc;
+  
+  padding: 10px;
+}
+
+/* Style for poll question input */
+.question input[type="text"] {
+  width: 100%;
+  border-radius: 30px
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/* Style for poll options */
+.question .options {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  
+}
+
+/* Style for poll option input */
+.question .option {
+  width: calc(50% - 5px); /* Adjust width as needed */
+  padding: 4px;
+  margin-bottom: 5px;
+}
+
+/* Style for add option button */
+.addOptionBtn {
+  padding: 5px 10px;
+  background-color: #6086c0; /* Modified background color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px; /* Added margin-left */
+}
+
+/* Style for add question button */
+.addQuestionBtn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #6086c0; /* Modified background color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 40px; /* Added margin-left */
+}
+
+select[name="language"] {
+    border-radius: 15px;
+    position: absolute; /* Add position: absolute to position it relative to its containing block */
+    top: 110px; /* Adjust the top value to move the dropdown up */
+    left: 50px; /* Adjust the left value to move the dropdown left */
+    border: none;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    margin-right: 5px;
+    background: linear-gradient(135deg, #6086c0, red); /* Adjust the gradient colors as needed */
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif; /* Specify font-family */
+}
+
+
+.create-poll-button {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(135deg, #6086c0, red);
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+    margin: 5%;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container .btn {
+  background-color: #f0f0f0;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  margin-bottom:10px;
+  opacity: 0.8;
+  border-radius:20px;
+  margin-right:5px;
+}
+
+.form-container .btn:hover {
+  opacity: 1;
+}
+
+div .display{
+    display: flex;
+}
+
+div .last-minute{
+    display:block;
+}
+
+div.random{
+    position: relative;
+    display:block;
+    top: 20px;
+    left:750px;
+}
+
+.create-poll-label {
+    
+    position: relative;
+    top:80px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(135deg, #6086c0, red);
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+div.cover{
+      height: 250px;
+      width: 180px;
+      background-color: #577BB0;
+}
+
+div .line {
+  position: relative;
+  bottom:20px;
+  left:10px;
+  border-left: 1px solid black;
+  height: 248px;
+  z-index: 2;
+}
+
+div.label{
+  position: relative;
+  right:11px;
+  top:50px;
+  height: 120px;
+  width: 180px;
+  background-color: #C8BD9E;
+  z-index: 3;
+  
+}
+
+p.book-title{
+   font-size: 22px; 
+   padding-left: 15px;
+   padding-top: 35px;
+   word-wrap: break-word;
+}
+
+div.book-link{
+    position: relative;
+    font-size: 14px;
+    top:2px;
+}
+
+table.writers td{
+    margin-top:7px;
+    position: relative;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 90px;
+    padding-right: 90px;
+    display:block;
+    border: 2.5px solid #577BB0;
+    border-radius: 20px;
+}
+
+div.report{
+    display:flex;
+}
+
+div#reason{
+    position: relative;
+    bottom:32px;
+    left:45px;
+}
+
+#custom-genre{
+  border-radius: 15px;
+    position: absolute; /* Add position: absolute to position it relative to its containing block */
+    top: 110px; /* Adjust the top value to move the dropdown up */
+    left: 65%;
+    border: none;
+    box-shadow: 0px 5px 17px 2px rgba(15, 14, 14, 0.25);
+    cursor: pointer;
+    margin-right: 5px;
+    background: linear-gradient(135deg,  white,#6086c0);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: #FAFAFA;
+}
